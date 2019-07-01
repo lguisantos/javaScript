@@ -1,0 +1,1 @@
+(ferrari.__proto__ )

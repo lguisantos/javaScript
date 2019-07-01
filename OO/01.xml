@@ -1,0 +1,380 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<View:ColumnView xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Column="http://www.sap.com/ndb/DataModelFilter.ecore" xmlns:Type="http://www.sap.com/ndb/DataModelType.ecore" xmlns:View="http://www.sap.com/ndb/ViewModelView.ecore" schemaVersion="1.2" name="AT_HISTORICO_CONSUMO" dataCategory="DIMENSION" dimensionType="STANDARD" hierarchiesSQLEnabled="false" defaultNode="#//Data Foundation" clientDependent="true" applyPrivilegeType="ANALYTIC_PRIVILEGE" translationRelevant="true">
+  <endUserTexts label="AT_HISTORICO_CONSUMO"/>
+  <origin/>
+  <executionHints semantic="TEMPLATE"/>
+  <viewNode xsi:type="View:JoinNode" name="Data Foundation">
+    <element name="PRODUTO" aggregationBehavior="NONE" drillDownEnablement="DRILL_DOWN">
+      <endUserTexts label="PRODUTO"/>
+      <inlineType primitiveType="NVARCHAR" length="40" precision="40" scale="0"/>
+    </element>
+    <element name="NOME_REVENDEDOR" aggregationBehavior="NONE" drillDownEnablement="DRILL_DOWN">
+      <endUserTexts label="NOME_REVENDEDOR"/>
+      <inlineType primitiveType="NVARCHAR" length="40" precision="40" scale="0"/>
+    </element>
+    <element name="VALOR" aggregationBehavior="NONE" drillDownEnablement="DRILL_DOWN">
+      <endUserTexts label="VALOR"/>
+      <inlineType primitiveType="DECIMAL" length="10" precision="10" scale="2"/>
+    </element>
+    <element name="ACTIVITY_DATE" aggregationBehavior="NONE" drillDownEnablement="DRILL_DOWN">
+      <endUserTexts label="ACTIVITY_DATE"/>
+      <inlineType primitiveType="DECIMAL" length="15" precision="15" scale="0"/>
+    </element>
+    <element name="CPF_PARTICIPANTE" aggregationBehavior="NONE" drillDownEnablement="DRILL_DOWN">
+      <endUserTexts label="CPF_PARTICIPANTE"/>
+      <inlineType primitiveType="NVARCHAR" length="20" precision="20" scale="0"/>
+    </element>
+    <element name="DATA_HORA" hidden="false" aggregationBehavior="NONE" drillDownEnablement="DRILL_DOWN">
+      <endUserTexts label="DATA_HORA"/>
+      <inlineType name="TIMESTAMP" primitiveType="TIMESTAMP" semanticType="empty"/>
+      <calculationDefinition language="COLUMN_ENGINE">
+        <formula>&quot;ACTIVITY_DATE&quot;</formula>
+      </calculationDefinition>
+    </element>
+    <element name="MES_ATIVIDADE" hidden="false" aggregationBehavior="NONE" drillDownEnablement="DRILL_DOWN">
+      <endUserTexts label="MES_ATIVIDADE"/>
+      <inlineType name="NVARCHAR" primitiveType="NVARCHAR" length="30" semanticType="empty"/>
+      <calculationDefinition language="COLUMN_ENGINE">
+        <formula>if(midstr(STRING(DATE(&quot;DATA_HORA&quot;)),6,2) = '01', '01 - Janeiro',&#xD;
+if(midstr(STRING(DATE(&quot;DATA_HORA&quot;)),6,2) = '02', '02 - Fevereiro' ,&#xD;
+if(midstr(STRING(DATE(&quot;DATA_HORA&quot;)),6,2) = '03', '03 - Março' ,&#xD;
+ if(midstr(STRING(DATE(&quot;DATA_HORA&quot;)),6,2) = '04', '04 - Abril',&#xD;
+ if(midstr(STRING(DATE(&quot;DATA_HORA&quot;)),6,2) = '05', '05 - Maio' , &#xD;
+ if(midstr(STRING(DATE(&quot;DATA_HORA&quot;)),6,2) = '06', '06 - Junho' ,&#xD;
+ if(midstr(STRING(DATE(&quot;DATA_HORA&quot;)),6,2) = '07', '07 - Julho' ,&#xD;
+ if(midstr(STRING(DATE(&quot;DATA_HORA&quot;)),6,2) = '08', '08 - Agosto' ,&#xD;
+ if(midstr(STRING(DATE(&quot;DATA_HORA&quot;)),6,2) = '09', '09 - Setembro' ,&#xD;
+ if(midstr(STRING(DATE(&quot;DATA_HORA&quot;)),6,2) = '10', '10 - Outubro' ,&#xD;
+ if(midstr(STRING(DATE(&quot;DATA_HORA&quot;)),6,2) = '11', '11 - Novembro' ,&#xD;
+ if(midstr(STRING(DATE(&quot;DATA_HORA&quot;)),6,2) = '12', '12 - Dezembro' , 'NA'))))))))) )) ) &#xD;
+</formula>
+      </calculationDefinition>
+    </element>
+    <element name="PROCESS_TYPE" aggregationBehavior="NONE" drillDownEnablement="DRILL_DOWN">
+      <endUserTexts label="PROCESS_TYPE"/>
+      <inlineType primitiveType="NVARCHAR" length="15" precision="15" scale="0"/>
+    </element>
+    <element name="ANO_ATIVIDADE" hidden="false" aggregationBehavior="NONE" drillDownEnablement="DRILL_DOWN">
+      <endUserTexts label="ANO_ATIVIDADE"/>
+      <inlineType name="NVARCHAR" primitiveType="NVARCHAR" length="4" semanticType="empty"/>
+      <calculationDefinition language="COLUMN_ENGINE">
+        <formula>LEFTSTR(STRING(&quot;DATA_HORA&quot;),4)</formula>
+      </calculationDefinition>
+    </element>
+    <element name="ID_PARTICIPANTE" aggregationBehavior="NONE" drillDownEnablement="DRILL_DOWN">
+      <endUserTexts label="ID_PARTICIPANTE"/>
+      <inlineType primitiveType="NVARCHAR" length="10" precision="10" scale="0"/>
+    </element>
+    <element name="NOME_PARTICIPANTE" aggregationBehavior="NONE" drillDownEnablement="DRILL_DOWN">
+      <endUserTexts label="NOME_PARTICIPANTE"/>
+      <inlineType primitiveType="NVARCHAR" length="40" precision="40" scale="0"/>
+    </element>
+    <element name="SOBRE_NOME" aggregationBehavior="NONE" drillDownEnablement="DRILL_DOWN">
+      <endUserTexts label="SOBRE_NOME"/>
+      <inlineType primitiveType="NVARCHAR" length="40" precision="40" scale="0"/>
+    </element>
+    <element name="DATATRANSACAO" hidden="false" aggregationBehavior="NONE" drillDownEnablement="DRILL_DOWN">
+      <endUserTexts label="DATATRANSACAO"/>
+      <inlineType name="NVARCHAR" primitiveType="NVARCHAR" length="10" semanticType="empty"/>
+      <calculationDefinition language="COLUMN_ENGINE">
+        <formula>DATE(&quot;DATA_HORA&quot;)</formula>
+      </calculationDefinition>
+    </element>
+    <element name="ID_REVENDEDOR" aggregationBehavior="NONE" drillDownEnablement="DRILL_DOWN">
+      <endUserTexts label="ID_REVENDEDOR"/>
+      <inlineType primitiveType="NVARCHAR" length="20" precision="20" scale="0"/>
+    </element>
+    <element name="CNPJ_REVENDEDOR" aggregationBehavior="NONE" drillDownEnablement="DRILL_DOWN">
+      <endUserTexts label="CNPJ_REVENDEDOR"/>
+      <inlineType primitiveType="NVARCHAR" length="20" precision="20" scale="0"/>
+    </element>
+    <element name="GUID" hidden="true" aggregationBehavior="NONE" drillDownEnablement="DRILL_DOWN">
+      <endUserTexts label="GUID"/>
+      <inlineType primitiveType="VARBINARY" length="16" precision="16" scale="0"/>
+    </element>
+    <element name="UF_PARTICIPANTE" aggregationBehavior="NONE" drillDownEnablement="DRILL_DOWN">
+      <endUserTexts label="UF_PARTICIPANTE"/>
+      <inlineType primitiveType="NVARCHAR" length="3" precision="3" scale="0"/>
+    </element>
+    <element name="UF_REVENDEDOR" aggregationBehavior="NONE" drillDownEnablement="DRILL_DOWN">
+      <endUserTexts label="UF_REVENDEDOR"/>
+      <inlineType primitiveType="NVARCHAR" length="3" precision="3" scale="0"/>
+    </element>
+    <element name="ID_EXT_PROD" aggregationBehavior="NONE" drillDownEnablement="DRILL_DOWN">
+      <endUserTexts label="ID_EXT_PROD"/>
+      <inlineType primitiveType="NVARCHAR" length="30" precision="30" scale="0"/>
+    </element>
+    <element name="CIDADE_REVENDEDOR" aggregationBehavior="NONE" drillDownEnablement="DRILL_DOWN">
+      <endUserTexts label="CIDADE_REVENDEDOR"/>
+      <inlineType primitiveType="NVARCHAR" length="40" precision="40" scale="0"/>
+    </element>
+    <element name="DESCRICAOPROD" aggregationBehavior="NONE" drillDownEnablement="DRILL_DOWN">
+      <endUserTexts label="DESCRICAOPROD"/>
+      <inlineType primitiveType="NVARCHAR" length="40" precision="40" scale="0"/>
+    </element>
+    <element name="ESTORNADA" aggregationBehavior="NONE" drillDownEnablement="DRILL_DOWN">
+      <endUserTexts label="ESTORNADA"/>
+      <inlineType primitiveType="NVARCHAR" length="1" precision="1" scale="0"/>
+    </element>
+    <element name="OBJECT_ID" aggregationBehavior="NONE" drillDownEnablement="DRILL_DOWN">
+      <endUserTexts label="OBJECT_ID"/>
+      <inlineType primitiveType="NVARCHAR" length="10" precision="10" scale="0"/>
+    </element>
+    <element name="ZZFLD00000T" aggregationBehavior="NONE" drillDownEnablement="DRILL_DOWN">
+      <endUserTexts label="ZZFLD00000T"/>
+      <inlineType primitiveType="NVARCHAR" length="20" precision="20" scale="0"/>
+    </element>
+    <element name="POSTO_PREMMIADO" aggregationBehavior="NONE" drillDownEnablement="DRILL_DOWN">
+      <endUserTexts label="POSTO_PREMMIADO"/>
+      <inlineType primitiveType="NVARCHAR" length="10" precision="10" scale="0"/>
+    </element>
+    <element name="CIDADE_POSTO_PREMMIADO" aggregationBehavior="NONE" drillDownEnablement="DRILL_DOWN">
+      <endUserTexts label="CIDADE_POSTO_PREMMIADO"/>
+      <inlineType primitiveType="NVARCHAR" length="40" precision="40" scale="0"/>
+    </element>
+    <element name="NAME3" aggregationBehavior="NONE" drillDownEnablement="DRILL_DOWN">
+      <endUserTexts label="NAME3"/>
+      <inlineType primitiveType="NVARCHAR" length="40" precision="40" scale="0"/>
+    </element>
+    <element name="DATE_TO" aggregationBehavior="NONE" drillDownEnablement="DRILL_DOWN">
+      <endUserTexts label="DATE_TO"/>
+      <inlineType primitiveType="NVARCHAR" length="8" precision="8" scale="0"/>
+    </element>
+    <element name="REF_GUID" aggregationBehavior="NONE">
+      <endUserTexts label="REF_GUID"/>
+      <inlineType primitiveType="VARBINARY" length="16" precision="16" scale="0"/>
+    </element>
+    <keyElement>#//Data Foundation/GUID</keyElement>
+    <input>
+      <entity>#//"SAPCAP".ZBR_CONSUMO_VALE</entity>
+      <layout xCoordinate="1625" yCoordinate="1120"/>
+    </input>
+    <input alias="CRED">
+      <entity>#//"SAPCAP".LOYD_MA_SPECATTR</entity>
+      <elementFilter elementName="CLIENT">
+        <valueFilter xsi:type="Column:SingleValueFilter" including="true" value="400"/>
+      </elementFilter>
+      <mapping xsi:type="Type:ElementMapping" targetName="REF_GUID" sourceName="REF_GUID"/>
+      <layout xCoordinate="2243" yCoordinate="832"/>
+    </input>
+    <input>
+      <entity>#//"SAPCAP".COMM_PRODUCT</entity>
+      <elementFilter elementName="CLIENT">
+        <valueFilter xsi:type="Column:SingleValueFilter" including="true" value="400"/>
+      </elementFilter>
+      <mapping xsi:type="Type:ElementMapping" targetName="PRODUTO" sourceName="PRODUCT_ID"/>
+      <layout xCoordinate="2649" yCoordinate="1136"/>
+    </input>
+    <input>
+      <entity>#//"SAPCAP".LOYD_PT_TXN</entity>
+      <elementFilter elementName="CLIENT">
+        <valueFilter xsi:type="Column:SingleValueFilter" including="true" value="400"/>
+      </elementFilter>
+      <layout xCoordinate="1978" yCoordinate="912"/>
+    </input>
+    <input alias="CONS">
+      <entity>#//"SAPCAP".LOYD_PT_TXN</entity>
+      <elementFilter elementName="CLIENT">
+        <valueFilter xsi:type="Column:SingleValueFilter" including="true" value="400"/>
+      </elementFilter>
+      <mapping xsi:type="Type:ElementMapping" targetName="VALOR" sourceName="POINTS"/>
+      <layout xCoordinate="1274" yCoordinate="16"/>
+    </input>
+    <input>
+      <entity>#//"SAPCAP".LOYD_MA_GENATTR</entity>
+      <elementFilter elementName="CLIENT">
+        <valueFilter xsi:type="Column:SingleValueFilter" including="true" value="400"/>
+      </elementFilter>
+      <mapping xsi:type="Type:ElementMapping" targetName="ACTIVITY_DATE" sourceName="ACTIVITY_DATE"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="PROCESS_TYPE" sourceName="PROCESS_TYPE"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="GUID" sourceName="GUID"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="ESTORNADA" sourceName="ZZFLD00002E"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="OBJECT_ID" sourceName="OBJECT_ID"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="ZZFLD00000T" sourceName="ZZFLD00000T"/>
+      <layout xCoordinate="993" yCoordinate="720"/>
+    </input>
+    <input alias="REVEND">
+      <entity>#//"SAPCAP".BUT000</entity>
+      <elementFilter elementName="CLIENT">
+        <valueFilter xsi:type="Column:SingleValueFilter" including="true" value="400"/>
+      </elementFilter>
+      <mapping xsi:type="Type:ElementMapping" targetName="NOME_REVENDEDOR" sourceName="NAME_ORG1"/>
+      <layout xCoordinate="367" yCoordinate="352"/>
+    </input>
+    <input alias="BUT000_PARTICIPANTE">
+      <entity>#//"SAPCAP".BUT000</entity>
+      <elementFilter elementName="CLIENT">
+        <valueFilter xsi:type="Column:SingleValueFilter" including="true" value="400"/>
+      </elementFilter>
+      <mapping xsi:type="Type:ElementMapping" targetName="ID_PARTICIPANTE" sourceName="PARTNER"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="NOME_PARTICIPANTE" sourceName="NAME_FIRST"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="SOBRE_NOME" sourceName="NAME_LAST"/>
+      <layout xCoordinate="1274" yCoordinate="705"/>
+    </input>
+    <input alias="PARTICIPANTE">
+      <entity>#//"SAPCAP".DFKKBPTAXNUM</entity>
+      <elementFilter elementName="TAXTYPE">
+        <valueFilter xsi:type="Column:SingleValueFilter" including="true" value="BR2"/>
+      </elementFilter>
+      <elementFilter elementName="CLIENT">
+        <valueFilter xsi:type="Column:SingleValueFilter" including="true" value="400"/>
+      </elementFilter>
+      <mapping xsi:type="Type:ElementMapping" targetName="CPF_PARTICIPANTE" sourceName="TAXNUM"/>
+      <layout xCoordinate="1625" yCoordinate="1265"/>
+    </input>
+    <input alias="REVENDEDOR">
+      <entity>#//"SAPCAP".DFKKBPTAXNUM</entity>
+      <elementFilter elementName="TAXTYPE">
+        <valueFilter xsi:type="Column:SingleValueFilter" including="true" value="BR1"/>
+      </elementFilter>
+      <mapping xsi:type="Type:ElementMapping" targetName="CNPJ_REVENDEDOR" sourceName="TAXNUM"/>
+      <layout xCoordinate="16" yCoordinate="1184"/>
+    </input>
+    <input alias="CONSUMO">
+      <entity>#//"SAPCAP".LOYD_MA_SPECATTR</entity>
+      <elementFilter elementName="CLIENT">
+        <valueFilter xsi:type="Column:SingleValueFilter" including="true" value="400"/>
+      </elementFilter>
+      <mapping xsi:type="Type:ElementMapping" targetName="ID_REVENDEDOR" sourceName="RETAIL_STORE_ID"/>
+      <layout xCoordinate="640" yCoordinate="832"/>
+    </input>
+    <input alias="BUT020_PARTICIPANTE">
+      <entity>#//"SAPCAP".BUT020</entity>
+      <elementFilter elementName="CLIENT">
+        <valueFilter xsi:type="Column:SingleValueFilter" including="true" value="400"/>
+      </elementFilter>
+      <layout xCoordinate="2818" yCoordinate="30"/>
+    </input>
+    <input alias="ADRC_PARTICIPANTE">
+      <entity>#//"SAPCAP".ADRC</entity>
+      <elementFilter elementName="CLIENT">
+        <valueFilter xsi:type="Column:SingleValueFilter" including="true" value="400"/>
+      </elementFilter>
+      <mapping xsi:type="Type:ElementMapping" targetName="UF_PARTICIPANTE" sourceName="REGION"/>
+      <layout xCoordinate="3155" yCoordinate="30"/>
+    </input>
+    <input alias="BUT020_REVENDEDOR">
+      <entity>#//"SAPCAP".BUT020</entity>
+      <elementFilter elementName="CLIENT">
+        <valueFilter xsi:type="Column:SingleValueFilter" including="true" value="400"/>
+      </elementFilter>
+      <layout xCoordinate="3466" yCoordinate="30"/>
+    </input>
+    <input alias="ADRC_REVENDEDOR">
+      <entity>#//"SAPCAP".ADRC</entity>
+      <elementFilter elementName="CLIENT">
+        <valueFilter xsi:type="Column:SingleValueFilter" including="true" value="400"/>
+      </elementFilter>
+      <mapping xsi:type="Type:ElementMapping" targetName="UF_REVENDEDOR" sourceName="REGION"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="CIDADE_REVENDEDOR" sourceName="CITY1"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="NAME3" sourceName="NAME3"/>
+      <layout xCoordinate="3801" yCoordinate="30"/>
+    </input>
+    <input>
+      <entity>#//"SAPCAP".CRM_EXT_MAT</entity>
+      <mapping xsi:type="Type:ElementMapping" targetName="ID_EXT_PROD" sourceName="ZZFLD00000C"/>
+      <layout xCoordinate="4110" yCoordinate="30"/>
+    </input>
+    <input>
+      <entity>#//"SAPCAP".COMM_PRSHTEXT</entity>
+      <mapping xsi:type="Type:ElementMapping" targetName="DESCRICAOPROD" sourceName="SHORT_TEXT"/>
+      <layout xCoordinate="4350" yCoordinate="30"/>
+    </input>
+    <input>
+      <entity>#//"SAPCAP".BUT050</entity>
+      <elementFilter elementName="RELTYP">
+        <valueFilter xsi:type="Column:SingleValueFilter" including="true" value="Z00001"/>
+      </elementFilter>
+      <mapping xsi:type="Type:ElementMapping" targetName="POSTO_PREMMIADO" sourceName="PARTNER2"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="DATE_TO" sourceName="DATE_TO"/>
+      <layout xCoordinate="4606" yCoordinate="30"/>
+    </input>
+    <input alias="BUT020_POSTO">
+      <entity>#//"SAPCAP".BUT020</entity>
+      <layout xCoordinate="4846" yCoordinate="30"/>
+    </input>
+    <input>
+      <entity>#//"SAPCAP".ADRC</entity>
+      <mapping xsi:type="Type:ElementMapping" targetName="CIDADE_POSTO_PREMMIADO" sourceName="CITY1"/>
+      <layout xCoordinate="5142" yCoordinate="30"/>
+    </input>
+    <layout xCoordinate="40" yCoordinate="85" width="219" height="336"/>
+    <join leftInput="#//Data Foundation/CRED" rightInput="#//Data Foundation/"SAPCAP".COMM_PRODUCT" joinType="inner" textJoin="false">
+      <leftElementName>PRODUCT_GUID</leftElementName>
+      <rightElementName>PRODUCT_GUID</rightElementName>
+    </join>
+    <join leftInput="#//Data Foundation/CRED" rightInput="#//Data Foundation/"SAPCAP".LOYD_PT_TXN" joinType="inner" textJoin="false">
+      <leftElementName>REF_GUID</leftElementName>
+      <rightElementName>ACTIVITY_GUID</rightElementName>
+    </join>
+    <join leftInput="#//Data Foundation/"SAPCAP".LOYD_PT_TXN" rightInput="#//Data Foundation/"SAPCAP".ZBR_CONSUMO_VALE" joinType="inner" textJoin="false">
+      <leftElementName>GUID</leftElementName>
+      <rightElementName>Z_GUID_CREDITO</rightElementName>
+    </join>
+    <join leftInput="#//Data Foundation/"SAPCAP".ZBR_CONSUMO_VALE" rightInput="#//Data Foundation/CONS" joinType="inner" textJoin="false">
+      <leftElementName>Z_GUID_CONSUMO</leftElementName>
+      <rightElementName>GUID</rightElementName>
+    </join>
+    <join leftInput="#//Data Foundation/CONS" rightInput="#//Data Foundation/"SAPCAP".LOYD_MA_GENATTR" joinType="inner" textJoin="false">
+      <leftElementName>ACTIVITY_GUID</leftElementName>
+      <rightElementName>GUID</rightElementName>
+    </join>
+    <join leftInput="#//Data Foundation/"SAPCAP".LOYD_MA_GENATTR" rightInput="#//Data Foundation/BUT000_PARTICIPANTE" joinType="inner" textJoin="false">
+      <leftElementName>MEMBER_GUID</leftElementName>
+      <rightElementName>PARTNER_GUID</rightElementName>
+    </join>
+    <join leftInput="#//Data Foundation/BUT000_PARTICIPANTE" rightInput="#//Data Foundation/PARTICIPANTE" joinType="inner" textJoin="false">
+      <leftElementName>PARTNER</leftElementName>
+      <rightElementName>PARTNER</rightElementName>
+    </join>
+    <join leftInput="#//Data Foundation/REVEND" rightInput="#//Data Foundation/REVENDEDOR" joinType="leftOuter" textJoin="false">
+      <leftElementName>PARTNER</leftElementName>
+      <rightElementName>PARTNER</rightElementName>
+    </join>
+    <join leftInput="#//Data Foundation/CONSUMO" rightInput="#//Data Foundation/REVEND" joinType="leftOuter" textJoin="false">
+      <leftElementName>RETAIL_STORE_ID</leftElementName>
+      <rightElementName>PARTNER</rightElementName>
+    </join>
+    <join leftInput="#//Data Foundation/"SAPCAP".LOYD_MA_GENATTR" rightInput="#//Data Foundation/CONSUMO" joinType="leftOuter" textJoin="false">
+      <leftElementName>GUID</leftElementName>
+      <rightElementName>REF_GUID</rightElementName>
+    </join>
+    <join leftInput="#//Data Foundation/BUT000_PARTICIPANTE" rightInput="#//Data Foundation/BUT020_PARTICIPANTE" joinType="leftOuter" textJoin="false">
+      <leftElementName>PARTNER</leftElementName>
+      <rightElementName>PARTNER</rightElementName>
+    </join>
+    <join leftInput="#//Data Foundation/BUT020_PARTICIPANTE" rightInput="#//Data Foundation/ADRC_PARTICIPANTE" joinType="leftOuter" textJoin="false">
+      <leftElementName>ADDRNUMBER</leftElementName>
+      <rightElementName>ADDRNUMBER</rightElementName>
+    </join>
+    <join leftInput="#//Data Foundation/REVEND" rightInput="#//Data Foundation/BUT020_REVENDEDOR" joinType="leftOuter" textJoin="false">
+      <leftElementName>PARTNER</leftElementName>
+      <rightElementName>PARTNER</rightElementName>
+    </join>
+    <join leftInput="#//Data Foundation/BUT020_REVENDEDOR" rightInput="#//Data Foundation/ADRC_REVENDEDOR" joinType="leftOuter" textJoin="false">
+      <leftElementName>ADDRNUMBER</leftElementName>
+      <rightElementName>ADDRNUMBER</rightElementName>
+    </join>
+    <join leftInput="#//Data Foundation/CRED" rightInput="#//Data Foundation/"SAPCAP".CRM_EXT_MAT" joinType="leftOuter" textJoin="false">
+      <leftElementName>PRODUCT_GUID</leftElementName>
+      <rightElementName>PRODUCT_GUID</rightElementName>
+    </join>
+    <join leftInput="#//Data Foundation/CRED" rightInput="#//Data Foundation/"SAPCAP".COMM_PRSHTEXT" joinType="leftOuter" textJoin="false">
+      <leftElementName>PRODUCT_GUID</leftElementName>
+      <rightElementName>PRODUCT_GUID</rightElementName>
+    </join>
+    <join leftInput="#//Data Foundation/BUT020_POSTO" rightInput="#//Data Foundation/"SAPCAP".BUT050" joinType="rightOuter" textJoin="false">
+      <leftElementName>PARTNER</leftElementName>
+      <rightElementName>PARTNER2</rightElementName>
+    </join>
+    <join leftInput="#//Data Foundation/"SAPCAP".ADRC" rightInput="#//Data Foundation/BUT020_POSTO" joinType="rightOuter" textJoin="false">
+      <leftElementName>ADDRNUMBER</leftElementName>
+      <rightElementName>ADDRNUMBER</rightElementName>
+    </join>
+    <join leftInput="#//Data Foundation/"SAPCAP".BUT050" rightInput="#//Data Foundation/BUT000_PARTICIPANTE" joinType="rightOuter" textJoin="false">
+      <leftElementName>PARTNER1</leftElementName>
+      <rightElementName>PARTNER</rightElementName>
+    </join>
+  </viewNode>
+  <viewLayout relativeWidthScenario="27"/>
+</View:ColumnView>
