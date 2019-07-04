@@ -1,2 +1,2 @@
-# curso-web-developer
+# Curso de JavaScript
 Curso de desenvolvimento web
