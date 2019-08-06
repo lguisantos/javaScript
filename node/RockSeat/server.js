@@ -9,16 +9,21 @@
 
 const express = require('express');
 const mongoose = require('mongoose');
-
-// Iniciando o DB
-mongoose.connect('mongodb://localhost:27017/nodeapi', {useNewUrlParser: true})
+const requireDir = require('require-dir')
 
 // Iniciando o App
 const app = express();
 
-// Criando a primeira rota
-app.get('/', (requisicao, resposta)=>{
-    resposta.send('<a target="_blank" href="https://rocketseat.com.br/">Site da RockSeat<a>')
-})
-app.listen(3000)
+// Iniciando o DB
+mongoose.connect(
+    'mongodb://localhost:27017/nodeapi',
+    { useNewUrlParser: true }
+);
 
+//Buscando todas as models criadas
+requireDir('./src/models')
+
+// Rotas    
+app.use('/api', require('./src/routes'));
+
+app.listen(3000)
