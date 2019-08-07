@@ -1,5 +1,6 @@
 // ****************************************************************************************
 // importando a biblioteca, este framework é usado para:
+
 // Gerenciar as requisições de diferentes requisições e rotas e URLs.
 // Combinar com mecanismos de renderização de "view" para gerar respostas inserindo dados em modelos.
 // Definir as configurações comuns da aplicação web, como a porta a ser usada para conexão e a localização
@@ -13,6 +14,9 @@ const requireDir = require('require-dir')
 
 // Iniciando o App
 const app = express();
+
+//Permite que nossa aplicação receba arquivos no formato json
+app.use(express.json())
 
 // Iniciando o DB
 mongoose.connect(
