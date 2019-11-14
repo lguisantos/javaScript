@@ -1,9 +1,9 @@
-const aprovados = ['Agatha', 'Aldo', 'Daniel', 'Raquel']
+const aprovados = ["Agatha", "Aldo", "Daniel", "Raquel"];
 
-console.log('lista de aprovados')
-aprovados.forEach(function (nome, indice) {
-  console.log(`${indice + 1}) ${nome}`)
-})
-console.log()
-// Using a arrow function with only one parameter
-aprovados.forEach(nome => console.log(nome))
+// aprovados.forEach((valor, indice, arrayCompleto) => {
+//   console.log(`${indice + 1} ) ${valor}`);
+// });
+
+const exibirAprovados = nome => console.log(nome)
+
+aprovados.forEach(exibirAprovados)

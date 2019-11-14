@@ -9,5 +9,4 @@ const produto = [
 // usando filter encadeado
 var caro = produto => produto.preco >= 500
 var fragil = produto => produto.fragil == false 
-
 console.log(produto.filter(caro).filter(fragil)) 

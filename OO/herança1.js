@@ -16,5 +16,9 @@ console.log(ferrari.__proto__ === Object.prototype)
 console.log(volvo.__proto__ === Object.prototype)
 
 // O Object.prototype é o nosso objeto de nível mais alto, não exitem heranças para ele
-console.log(Object.prototype.__proto__)
+console.log(Object.prototype.__proto__ === null)
+
+//toda função tem um prototype
+function MeuObjeto(){}
+console.log(typeof Object, typeof MeuObjeto)
 

@@ -3,6 +3,7 @@ const pessoa = {
     idade: 21,
     peso: 90
 }
+
 // Lendo as chaves do objeto
 console.log(Object.keys(pessoa))
 
@@ -22,3 +23,15 @@ Object.defineProperties(pessoa, 'nascimento', {
     writable: false,    // Atributo que permite ou não o propriedade ser alterada
     value: '07/12/1997' // Atributo que insere valor
 })
+
+// Fazendo um Merge com objetos
+const obj  = {k: 0}
+const obj1 = {a: 21}
+const obj2 = {b: 34}
+const obj3 = {c: 2}
+
+const Merge = Object.assign(obj, obj1, obj2, obj3);
+console.log(Merge)
+
+// Com o Freeze o objeto fica imutável
+Object.freeze(Merge);
